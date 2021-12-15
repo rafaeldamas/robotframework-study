@@ -1,23 +1,10 @@
 *** Settings ***
-Library    AppiumLibrary
+Resource        resources/base.robot
 
+Test Setup    Start Session
+Test Teardown    Close Session
 
 *** Test Cases ***
 Ver meu saldo 
-    AppiumLibrary.Open Application    http://localhost:4723/wd/hub
-    ...                               automationName=UiAutomator2
-    ...                               platformName=Android
-    ...                               deviceName=Android Emulator
-    ...                               appActivity=.MainActivity
-    ...                               udid=emulator-5554
-
-    Wait Until Element Is Visible    accessibility_id=card-hero    10
-    
-    Click Element                    accessibility_id=show-balance
-    
-    Wait Until Element Is Visible    accessibility_id=user-balance    10
-    Element Text Should Be           accessibility_id=user-balance    R$ 5.500,00
-    
-    Capture Page Screenshot
-    
-    Close Application
+    Mostra saldo
+    Meu saldo deve ser de    R$ 5.500,00
